@@ -1,5 +1,6 @@
-package `in`.rithikjain.spillthetea
+package `in`.rithikjain.spillthetea.ui
 
+import `in`.rithikjain.spillthetea.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
