@@ -1,6 +1,6 @@
 <div align="center">
     <img 
-    src="https://pasteboard.co/dmhUdGFCsLm1.svg+xml" 
+    src="https://svgshare.com/i/dCB.svg" 
     height="100"/>
     <h1>Spike Backend</h1>
 </div>
