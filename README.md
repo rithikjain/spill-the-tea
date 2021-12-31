@@ -1,8 +1,11 @@
 <div align="center">
     <img 
     src="https://svgshare.com/i/dCB.svg" 
-    height="100"/>
-    <h1>Spike Backend</h1>
+    height="200"/>
+    <h1>Spill the Tea</h1>
+    <p>Have anything on your mind? Spill it.</p>
+    <p>Teas can be classified by the people or topics you mention in them.</p>
+    <p>Emotion analysis date wise so that you can see how you were feeling on a particular day. (Future)</p>
 </div>
 
 
