@@ -7,8 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import `in`.rithikjain.spillthetea.R
 import `in`.rithikjain.spillthetea.databinding.FragmentFeedBinding
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FeedFragment : Fragment() {
+
+    private val viewModel: FeedViewModel by viewModels()
 
     private var _binding: FragmentFeedBinding? = null
     private val binding get() = _binding!!

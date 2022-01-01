@@ -6,4 +6,6 @@
     <string name="feed">Feed</string>
     <string name="explore">Explore</string>
     <string name="profile">Profile</string>
+    <string name="no_tea_message">Wow, much empty :(\n<b>Start spilling some tea now!</b></string>
+    <string name="spill_tea">Spill Tea</string>
 </resources>
