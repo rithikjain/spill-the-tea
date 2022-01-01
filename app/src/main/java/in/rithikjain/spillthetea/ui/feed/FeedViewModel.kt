@@ -24,4 +24,10 @@ class FeedViewModel @Inject constructor(
         }
     }
 
+    fun deletePost(post: Post) {
+        viewModelScope.launch {
+            repository.deletePost(post)
+        }
+    }
+
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import `in`.rithikjain.spillthetea.R
+import `in`.rithikjain.spillthetea.data.local.entity.Post
 import `in`.rithikjain.spillthetea.databinding.FragmentFeedBinding
 import android.util.Log
 import androidx.fragment.app.viewModels
@@ -17,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class FeedFragment : Fragment() {
+class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
 
     private val viewModel: FeedViewModel by viewModels()
 
@@ -35,7 +36,7 @@ class FeedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val feedAdapter = FeedAdapter()
+        val feedAdapter = FeedAdapter(this)
 
         binding.postsRecyclerView.apply {
             adapter = feedAdapter
@@ -65,5 +66,9 @@ class FeedFragment : Fragment() {
                 feedAdapter.submitList(it)
             }
         }
+    }
+
+    override fun onItemClick(post: Post) {
+        viewModel.deletePost(post)
     }
 }
