@@ -9,6 +9,8 @@ import `in`.rithikjain.spillthetea.R
 import `in`.rithikjain.spillthetea.databinding.FragmentFeedBinding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,5 +27,23 @@ class FeedFragment : Fragment() {
     ): View {
         _binding = FragmentFeedBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val feedAdapter = FeedAdapter()
+
+        binding.postsRecyclerView.apply {
+            adapter = feedAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            addItemDecoration(
+                DividerItemDecoration(
+                    context,
+                    LinearLayoutManager.VERTICAL
+                )
+            )
+        }
     }
 }

@@ -66,7 +66,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/no_tea_message_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,5 +82,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/posts_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/post_item"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
