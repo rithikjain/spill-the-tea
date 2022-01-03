@@ -1,4 +1,4 @@
-package `in`.rithikjain.spillthetea.ui.feed
+package `in`.rithikjain.spillthetea.ui.addeditpost
 
 import `in`.rithikjain.spillthetea.data.local.entity.Post
 import `in`.rithikjain.spillthetea.data.repository.PostRepository
@@ -10,16 +10,17 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class FeedViewModel @Inject constructor(
+class AddEditPostViewModel @Inject constructor(
     private val repository: PostRepository
 ) : ViewModel() {
 
-    val posts = repository.getPosts()
-
-    fun deletePost(post: Post) {
-        viewModelScope.launch {
-            repository.deletePost(post)
+    fun insertPost(content: String) {
+        if (content.trim().isNotEmpty()) {
+            viewModelScope.launch {
+                repository.insertPost(
+                    Post(content.trim(), Date())
+                )
+            }
         }
     }
-
 }

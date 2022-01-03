@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import `in`.rithikjain.spillthetea.R
 import `in`.rithikjain.spillthetea.data.local.entity.Post
 import `in`.rithikjain.spillthetea.databinding.FragmentFeedBinding
+import `in`.rithikjain.spillthetea.ui.addeditpost.AddEditPostActivity
+import android.content.Intent
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -51,7 +53,8 @@ class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
         }
 
         binding.addFab.setOnClickListener {
-            viewModel.insertPost()
+            val intent = Intent(requireContext(), AddEditPostActivity::class.java)
+            startActivity(intent)
         }
 
         lifecycleScope.launchWhenStarted {

@@ -9,4 +9,7 @@
     <string name="no_tea_message">Wow, much empty :(\n<b>Start spilling some tea now!</b></string>
     <string name="spill_tea">Spill Tea</string>
     <string name="profile_image">Profile Image</string>
+    <string name="close_screen">Close Screen</string>
+    <string name="spill_it">Spill it!</string>
+    <string name="whats_up">What\'s up?</string>
 </resources>
