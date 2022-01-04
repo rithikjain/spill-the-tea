@@ -7,11 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import `in`.rithikjain.spillthetea.R
 import `in`.rithikjain.spillthetea.databinding.FragmentProfileBinding
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,5 +26,26 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.saveButton.setOnClickListener {
+            viewModel.setName(binding.nameTextInput.editText!!.text.toString())
+            viewModel.setUsername(binding.usernameTextInput.editText!!.text.toString())
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.getName().collect {
+                binding.nameTextInput.editText!!.setText(it ?: "")
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.getUsername().collect {
+                binding.usernameTextInput.editText!!.setText(it ?: "")
+            }
+        }
     }
 }

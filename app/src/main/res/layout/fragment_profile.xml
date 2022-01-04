@@ -20,8 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:backgroundTint="@color/black"
-            app:contentInsetStart="0dp"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:contentInsetStart="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -124,7 +123,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/spill_button"
+                android:id="@+id/save_button"
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_marginTop="64dp"
