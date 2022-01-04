@@ -12,4 +12,7 @@
     <string name="close_screen">Close Screen</string>
     <string name="spill_it">Spill it!</string>
     <string name="whats_up">What\'s up?</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="save">Save</string>
 </resources>
