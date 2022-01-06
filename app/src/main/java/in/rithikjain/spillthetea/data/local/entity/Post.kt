@@ -1,6 +1,7 @@
 package `in`.rithikjain.spillthetea.data.local.entity
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import java.util.*
 
@@ -9,5 +10,10 @@ import java.util.*
 data class Post(
     val content: String,
     val timestamp: Date,
-    @PrimaryKey val id: Int? = null
-)
+    @PrimaryKey val id: Int? = null,
+) {
+    @Ignore
+    var username: String = ""
+    @Ignore
+    var name: String = ""
+}

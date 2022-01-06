@@ -35,6 +35,8 @@ class FeedAdapter(private val listener: OnItemClickListener) :
             binding.apply {
                 contentTextView.text = post.content
                 dateTimeTextView.text = dateFormat.format(post.timestamp)
+                nameTextView.text = post.name
+                usernameTextView.text = post.username
             }
         }
     }
