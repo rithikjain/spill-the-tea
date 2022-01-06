@@ -2,6 +2,7 @@ package `in`.rithikjain.spillthetea.ui.feed
 
 import `in`.rithikjain.spillthetea.data.local.entity.Post
 import `in`.rithikjain.spillthetea.databinding.PostItemBinding
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -31,12 +32,13 @@ class FeedAdapter(private val listener: OnItemClickListener) :
 
         var dateFormat: DateFormat = SimpleDateFormat("HH:mm • dd MMM yy", Locale.ENGLISH)
 
+        @SuppressLint("SetTextI18n")
         fun bind(post: Post) {
             binding.apply {
                 contentTextView.text = post.content
                 dateTimeTextView.text = dateFormat.format(post.timestamp)
                 nameTextView.text = post.name
-                usernameTextView.text = post.username
+                usernameTextView.text = "@" + post.username
             }
         }
     }
