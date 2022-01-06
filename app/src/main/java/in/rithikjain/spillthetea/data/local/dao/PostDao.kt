@@ -16,6 +16,6 @@ interface PostDao {
     @Query("SELECT * FROM post WHERE id = :id")
     suspend fun getPostById(id: Int): Post?
 
-    @Query("SELECT * FROM post")
+    @Query("SELECT * FROM post ORDER BY timestamp DESC")
     fun getPosts(): Flow<List<Post>>
 }

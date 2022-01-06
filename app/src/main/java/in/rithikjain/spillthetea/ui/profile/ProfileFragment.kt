@@ -1,16 +1,18 @@
 package `in`.rithikjain.spillthetea.ui.profile
 
+import `in`.rithikjain.spillthetea.databinding.FragmentProfileBinding
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import `in`.rithikjain.spillthetea.R
-import `in`.rithikjain.spillthetea.databinding.FragmentProfileBinding
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -36,15 +38,19 @@ class ProfileFragment : Fragment() {
             viewModel.setUsername(binding.usernameTextInput.editText!!.text.toString())
         }
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.getName().collect {
-                binding.nameTextInput.editText!!.setText(it ?: "")
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getName().collect {
+                    binding.nameTextInput.editText!!.setText(it ?: "")
+                }
             }
         }
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.getUsername().collect {
-                binding.usernameTextInput.editText!!.setText(it ?: "")
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getUsername().collect {
+                    binding.usernameTextInput.editText!!.setText(it ?: "")
+                }
             }
         }
     }

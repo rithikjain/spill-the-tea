@@ -4,7 +4,9 @@ import `in`.rithikjain.spillthetea.databinding.ActivityAddEditPostBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -31,14 +33,16 @@ class AddEditPostActivity : AppCompatActivity() {
             finish()
         }
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.addEditPostEvent.collect { event ->
-                when (event) {
-                    is AddEditPostViewModel.AddEditPostEvent.ShowErrorMessage -> {
-                        Snackbar.make(binding.root, event.message, Snackbar.LENGTH_SHORT).show()
-                    }
-                    is AddEditPostViewModel.AddEditPostEvent.PostInsertionSuccess -> {
-                        finish()
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.addEditPostEvent.collect { event ->
+                    when (event) {
+                        is AddEditPostViewModel.AddEditPostEvent.ShowErrorMessage -> {
+                            Snackbar.make(binding.root, event.message, Snackbar.LENGTH_SHORT).show()
+                        }
+                        is AddEditPostViewModel.AddEditPostEvent.PostInsertionSuccess -> {
+                            finish()
+                        }
                     }
                 }
             }

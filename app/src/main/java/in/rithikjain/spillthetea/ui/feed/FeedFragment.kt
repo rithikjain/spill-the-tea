@@ -1,23 +1,23 @@
 package `in`.rithikjain.spillthetea.ui.feed
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import `in`.rithikjain.spillthetea.R
 import `in`.rithikjain.spillthetea.data.local.entity.Post
 import `in`.rithikjain.spillthetea.databinding.FragmentFeedBinding
 import `in`.rithikjain.spillthetea.ui.addeditpost.AddEditPostActivity
 import android.content.Intent
-import android.util.Log
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
@@ -57,16 +57,18 @@ class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
             startActivity(intent)
         }
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.posts.collect {
-                if (it.isNotEmpty()) {
-                    binding.noTeaMessageLayout.visibility = View.GONE
-                    binding.postsRecyclerView.visibility = View.VISIBLE
-                } else {
-                    binding.noTeaMessageLayout.visibility = View.VISIBLE
-                    binding.postsRecyclerView.visibility = View.GONE
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.posts.collect {
+                    if (it.isNotEmpty()) {
+                        binding.noTeaMessageLayout.visibility = View.GONE
+                        binding.postsRecyclerView.visibility = View.VISIBLE
+                    } else {
+                        binding.noTeaMessageLayout.visibility = View.VISIBLE
+                        binding.postsRecyclerView.visibility = View.GONE
+                    }
+                    feedAdapter.submitList(it)
                 }
-                feedAdapter.submitList(it)
             }
         }
     }
