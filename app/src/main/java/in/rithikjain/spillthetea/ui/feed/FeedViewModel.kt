@@ -24,6 +24,7 @@ class FeedViewModel @Inject constructor(
         it.map { post ->
             post.name = dataStoreRepository.getString(Constants.PREF_NAME_KEY).first() ?: ""
             post.username = dataStoreRepository.getString(Constants.PREF_USERNAME_KEY).first() ?: ""
+            post.profilePhotoUrl = dataStoreRepository.getString(Constants.PREF_IMAGE_KEY).first()
             post
         }
     }

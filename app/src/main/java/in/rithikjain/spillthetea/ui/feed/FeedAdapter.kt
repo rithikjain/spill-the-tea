@@ -3,6 +3,7 @@ package `in`.rithikjain.spillthetea.ui.feed
 import `in`.rithikjain.spillthetea.data.local.entity.Post
 import `in`.rithikjain.spillthetea.databinding.PostItemBinding
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -39,6 +40,11 @@ class FeedAdapter(private val listener: OnItemClickListener) :
                 dateTimeTextView.text = dateFormat.format(post.timestamp)
                 nameTextView.text = post.name
                 usernameTextView.text = "@" + post.username
+                profilePhotoImageView.setImageURI(
+                    if (post.profilePhotoUrl.isNullOrEmpty()) null else Uri.parse(
+                        post.profilePhotoUrl
+                    )
+                )
             }
         }
     }

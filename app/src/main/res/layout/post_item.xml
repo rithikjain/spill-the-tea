@@ -10,12 +10,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_photo_image_view"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:contentDescription="@string/profile_image"
-            android:src="@drawable/circle"
+            android:src="@color/blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

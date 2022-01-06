@@ -1,6 +1,7 @@
 package `in`.rithikjain.spillthetea.ui.addeditpost
 
 import `in`.rithikjain.spillthetea.databinding.ActivityAddEditPostBinding
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -44,6 +45,16 @@ class AddEditPostActivity : AppCompatActivity() {
                             finish()
                         }
                     }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getProfilePhotoPath().collect { path ->
+                    binding.profilePhotoImageView.setImageURI(
+                        if (path.isNullOrEmpty()) null else Uri.parse(path)
+                    )
                 }
             }
         }

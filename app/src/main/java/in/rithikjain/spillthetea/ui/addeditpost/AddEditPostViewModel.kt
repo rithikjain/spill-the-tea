@@ -1,11 +1,14 @@
 package `in`.rithikjain.spillthetea.ui.addeditpost
 
 import `in`.rithikjain.spillthetea.data.local.entity.Post
+import `in`.rithikjain.spillthetea.data.repository.DataStoreRepository
 import `in`.rithikjain.spillthetea.data.repository.PostRepository
+import `in`.rithikjain.spillthetea.utils.Constants
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import java.util.*
@@ -13,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditPostViewModel @Inject constructor(
-    private val repository: PostRepository
+    private val repository: PostRepository,
+    private val dataStoreRepository: DataStoreRepository
 ) : ViewModel() {
 
     private val addEditPostEventChannel = Channel<AddEditPostEvent>()
@@ -32,6 +36,10 @@ class AddEditPostViewModel @Inject constructor(
                 addEditPostEventChannel.send(AddEditPostEvent.ShowErrorMessage("Content can't be empty '_'"))
             }
         }
+    }
+
+    fun getProfilePhotoPath(): Flow<String?> {
+        return dataStoreRepository.getString(Constants.PREF_IMAGE_KEY)
     }
 
     sealed class AddEditPostEvent {

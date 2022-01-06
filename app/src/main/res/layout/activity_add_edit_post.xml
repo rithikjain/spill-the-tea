@@ -97,13 +97,13 @@
             android:layout_marginHorizontal="18dp"
             android:layout_marginTop="18dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_photo_image_view"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="20dp"
                 android:contentDescription="@string/profile_image"
-                android:src="@drawable/circle"
+                android:src="@color/blue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

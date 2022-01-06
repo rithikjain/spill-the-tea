@@ -14,6 +14,10 @@ data class Post(
 ) {
     @Ignore
     var username: String = ""
+
     @Ignore
     var name: String = ""
+
+    @Ignore
+    var profilePhotoUrl: String? = null
 }
