@@ -33,4 +33,14 @@ class ProfileViewModel @Inject constructor(
             dataStoreRepository.putString(Constants.PREF_USERNAME_KEY, username)
         }
     }
+
+    fun getProfilePhotoPath(): Flow<String?> {
+        return dataStoreRepository.getString(Constants.PREF_IMAGE_KEY)
+    }
+
+    fun setProfilePhotoPath(path: String) {
+        viewModelScope.launch {
+            dataStoreRepository.putString(Constants.PREF_IMAGE_KEY, path)
+        }
+    }
 }

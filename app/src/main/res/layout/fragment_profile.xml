@@ -70,6 +70,16 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="18dp">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image_view"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="32dp"
+                android:src="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_text_input"
                 android:layout_width="0dp"
@@ -85,7 +95,7 @@
                 app:boxStrokeWidthFocused="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_image_view"
                 app:startIconDrawable="@drawable/ic_text"
                 app:startIconTint="@color/white">
 
