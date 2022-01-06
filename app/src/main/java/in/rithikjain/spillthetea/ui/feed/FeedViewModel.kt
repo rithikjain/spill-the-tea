@@ -20,19 +20,15 @@ class FeedViewModel @Inject constructor(
     private val dataStoreRepository: DataStoreRepository
 ) : ViewModel() {
 
-    val posts = repository.getPosts().map {
-        it.map { post ->
-            post.name = dataStoreRepository.getString(Constants.PREF_NAME_KEY).first() ?: ""
-            post.username = dataStoreRepository.getString(Constants.PREF_USERNAME_KEY).first() ?: ""
-            post.profilePhotoUrl = dataStoreRepository.getString(Constants.PREF_IMAGE_KEY).first()
-            post
-        }
-    }
+    val posts = repository.getPosts()
+
+    fun getName() = dataStoreRepository.getString(Constants.PREF_NAME_KEY)
+    fun getUsername() = dataStoreRepository.getString(Constants.PREF_USERNAME_KEY)
+    fun getProfilePhotoPath() = dataStoreRepository.getString(Constants.PREF_IMAGE_KEY)
 
     fun deletePost(post: Post) {
         viewModelScope.launch {
             repository.deletePost(post)
         }
     }
-
 }

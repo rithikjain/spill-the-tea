@@ -16,6 +16,22 @@ import java.util.*
 class FeedAdapter(private val listener: OnItemClickListener) :
     ListAdapter<Post, FeedAdapter.ViewHolder>(DiffCallback()) {
 
+    private var name: String = ""
+    private var username: String = ""
+    private var profilePhotoPath: String? = null
+
+    fun setName(name: String) {
+        this.name = name
+    }
+
+    fun setUsername(username: String) {
+        this.username = username
+    }
+
+    fun setProfilePhotoPath(profilePhotoPath: String?) {
+        this.profilePhotoPath = profilePhotoPath
+    }
+
     inner class ViewHolder(private val binding: PostItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -38,12 +54,10 @@ class FeedAdapter(private val listener: OnItemClickListener) :
             binding.apply {
                 contentTextView.text = post.content
                 dateTimeTextView.text = dateFormat.format(post.timestamp)
-                nameTextView.text = post.name
-                usernameTextView.text = "@" + post.username
+                nameTextView.text = name
+                usernameTextView.text = "@$username"
                 profilePhotoImageView.setImageURI(
-                    if (post.profilePhotoUrl.isNullOrEmpty()) null else Uri.parse(
-                        post.profilePhotoUrl
-                    )
+                    if (profilePhotoPath.isNullOrEmpty()) null else Uri.parse(profilePhotoPath)
                 )
             }
         }

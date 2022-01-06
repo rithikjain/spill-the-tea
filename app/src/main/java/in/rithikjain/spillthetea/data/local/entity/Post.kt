@@ -11,13 +11,4 @@ data class Post(
     val content: String,
     val timestamp: Date,
     @PrimaryKey val id: Int? = null,
-) {
-    @Ignore
-    var username: String = ""
-
-    @Ignore
-    var name: String = ""
-
-    @Ignore
-    var profilePhotoUrl: String? = null
-}
+)

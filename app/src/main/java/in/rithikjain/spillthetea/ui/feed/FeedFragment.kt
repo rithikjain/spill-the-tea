@@ -71,6 +71,30 @@ class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
                 }
             }
         }
+
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getName().collect {
+                    feedAdapter.setName(it ?: "")
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getUsername().collect {
+                    feedAdapter.setUsername(it ?: "")
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getProfilePhotoPath().collect {
+                    feedAdapter.setProfilePhotoPath(it)
+                }
+            }
+        }
     }
 
     override fun onItemClick(post: Post) {
