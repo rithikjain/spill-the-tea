@@ -59,4 +59,12 @@ class AppRepositoryImpl(
     override fun getPostsByHashtag(hashtagName: String): Flow<List<HashtagWithPosts>> {
         return postDao.getPostsByHashtag(hashtagName)
     }
+
+    override fun getAllHashtags(): Flow<List<Hashtag>> {
+        return hashtagDao.getAllHashtags()
+    }
+
+    override fun getAllPeople(): Flow<List<Person>> {
+        return peopleDao.getAllPeople()
+    }
 }

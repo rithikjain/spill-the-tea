@@ -28,4 +28,8 @@ interface AppRepository {
     fun getPostsByPerson(personName: String): Flow<List<PersonWithPosts>>
 
     fun getPostsByHashtag(hashtagName: String): Flow<List<HashtagWithPosts>>
+
+    fun getAllHashtags(): Flow<List<Hashtag>>
+
+    fun getAllPeople(): Flow<List<Person>>
 }

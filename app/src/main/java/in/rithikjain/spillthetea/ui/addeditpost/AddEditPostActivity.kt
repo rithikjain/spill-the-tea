@@ -6,6 +6,7 @@ import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,7 +14,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
 import com.hendraanggrian.appcompat.socialview.Hashtag
+import com.hendraanggrian.appcompat.socialview.Mention
 import com.hendraanggrian.appcompat.widget.HashtagArrayAdapter
+import com.hendraanggrian.appcompat.widget.MentionArrayAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -80,6 +83,31 @@ class AddEditPostActivity : AppCompatActivity() {
                     binding.profilePhotoImageView.setImageURI(
                         if (path.isNullOrEmpty()) null else Uri.parse(path)
                     )
+                }
+            }
+        }
+
+        val hashtagAdapter = HashtagArrayAdapter<Hashtag>(this)
+        val mentionAdapter = MentionArrayAdapter<Mention>(this)
+
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.hashtags.collect {
+                    for (hashtag in it) {
+                        hashtagAdapter.add(Hashtag(hashtag.hashtagName))
+                    }
+                    binding.contentTextField.hashtagAdapter = hashtagAdapter
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.people.collect {
+                    for (person in it) {
+                        mentionAdapter.add(Mention(person.personName))
+                    }
+                    binding.contentTextField.mentionAdapter = mentionAdapter
                 }
             }
         }

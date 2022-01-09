@@ -25,6 +25,9 @@ class AddEditPostViewModel @Inject constructor(
     private val addEditPostEventChannel = Channel<AddEditPostEvent>()
     val addEditPostEvent = addEditPostEventChannel.receiveAsFlow()
 
+    val hashtags = repository.getAllHashtags()
+    val people = repository.getAllPeople()
+
     private fun getAllWordsByChar(content: String, char: String): List<String> {
         val regexPattern = "($char\\w+)"
         val p = Pattern.compile(regexPattern)
@@ -73,9 +76,24 @@ class AddEditPostViewModel @Inject constructor(
 
     fun updatePost(post: Post, content: String) {
         if (content.trim().isNotEmpty()) {
+            val hashtags = getAllWordsByChar(content.trim(), "#")
+            val people = getAllWordsByChar(content.trim(), "@")
+
             val updatedPost = post.copy(content = content)
+
             viewModelScope.launch {
-                repository.insertPost(updatedPost)
+                val postId = repository.insertPost(updatedPost)
+
+                for (hashtag in hashtags) {
+                    repository.insertHashtag(Hashtag(hashtag))
+                    repository.insertHashtagPost(PostHashtagCrossRef(postId, hashtag))
+                }
+
+                for (person in people) {
+                    repository.insertPerson(Person(person))
+                    repository.insertPersonPost(PostPersonCrossRef(postId, person))
+                }
+
                 addEditPostEventChannel.send(AddEditPostEvent.PostInsertionSuccess)
             }
         } else {
