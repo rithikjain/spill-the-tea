@@ -52,6 +52,16 @@
                         android:layout_height="0dp"
                         android:layout_weight="1" />
 
+                    <ImageView
+                        android:id="@+id/delete_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="16dp"
+                        android:contentDescription="@string/close_screen"
+                        android:src="@drawable/ic_delete"
+                        android:visibility="gone" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/spill_button"
                         android:layout_width="wrap_content"

@@ -38,6 +38,26 @@ class AddEditPostViewModel @Inject constructor(
         }
     }
 
+    fun updatePost(post: Post, content: String) {
+        if (content.trim().isNotEmpty()) {
+            val updatedPost = post.copy(content = content)
+            viewModelScope.launch {
+                repository.insertPost(updatedPost)
+                addEditPostEventChannel.send(AddEditPostEvent.PostInsertionSuccess)
+            }
+        } else {
+            viewModelScope.launch {
+                addEditPostEventChannel.send(AddEditPostEvent.ShowErrorMessage("Content can't be empty '_'"))
+            }
+        }
+    }
+
+    fun deletePost(post: Post) {
+        viewModelScope.launch {
+            repository.deletePost(post)
+        }
+    }
+
     fun getProfilePhotoPath(): Flow<String?> {
         return dataStoreRepository.getString(Constants.PREF_IMAGE_KEY)
     }

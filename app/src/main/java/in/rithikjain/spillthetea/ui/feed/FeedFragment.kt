@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.io.Serializable
 
 @AndroidEntryPoint
 class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
@@ -98,6 +99,8 @@ class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(post: Post) {
-        viewModel.deletePost(post)
+        val intent = Intent(requireContext(), AddEditPostActivity::class.java)
+        intent.putExtra("post", post as Serializable)
+        startActivity(intent)
     }
 }

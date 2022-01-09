@@ -1,9 +1,12 @@
 package `in`.rithikjain.spillthetea.ui.addeditpost
 
+import `in`.rithikjain.spillthetea.data.local.entity.Post
 import `in`.rithikjain.spillthetea.databinding.ActivityAddEditPostBinding
+import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -20,14 +23,34 @@ class AddEditPostActivity : AppCompatActivity() {
 
     private val viewModel: AddEditPostViewModel by viewModels()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddEditPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val post = intent.getSerializableExtra("post") as Post?
+
+        if (post != null) {
+            binding.spillButton.text = "Update"
+            binding.deleteButton.visibility = View.VISIBLE
+            binding.contentTextField.editText!!.setText(post.content)
+        }
+
+        binding.deleteButton.setOnClickListener {
+            if (post != null) {
+                viewModel.deletePost(post)
+                finish()
+            }
+        }
+
         binding.spillButton.setOnClickListener {
             val content = binding.contentTextField.editText!!.text.toString()
-            viewModel.insertPost(content)
+            if (post != null) {
+                viewModel.updatePost(post, content)
+            } else {
+                viewModel.insertPost(content)
+            }
         }
 
         binding.closeButton.setOnClickListener {
