@@ -1,17 +1,13 @@
-package `in`.rithikjain.spillthetea.ui.feed
+package `in`.rithikjain.spillthetea.ui.posts
 
 import `in`.rithikjain.spillthetea.data.local.entity.Post
-import `in`.rithikjain.spillthetea.databinding.FragmentFeedBinding
+import `in`.rithikjain.spillthetea.databinding.ActivityPostsBinding
 import `in`.rithikjain.spillthetea.ui.addeditpost.AddEditPostActivity
-import `in`.rithikjain.spillthetea.ui.posts.PostsActivity
+import android.annotation.SuppressLint
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -23,29 +19,30 @@ import kotlinx.coroutines.launch
 import java.io.Serializable
 
 @AndroidEntryPoint
-class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
+class PostsActivity : AppCompatActivity(), PostsAdapter.OnItemClickListener {
 
-    private val viewModel: FeedViewModel by viewModels()
+    private lateinit var binding: ActivityPostsBinding
+    private val viewModel: PostsViewModel by viewModels()
 
-    private var _binding: FragmentFeedBinding? = null
-    private val binding get() = _binding!!
+    @SuppressLint("SetTextI18n")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityPostsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentFeedBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        val type = intent.getStringExtra("type")
+        val value = intent.getStringExtra("value")
+        if (type == "hashtag") {
+            binding.appBarTitle.text = "#$value"
+        } else if (type == "person") {
+            binding.appBarTitle.text = "@$value"
+        }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val feedAdapter = FeedAdapter(this)
+        val postsAdapter = PostsAdapter(this)
 
         binding.postsRecyclerView.apply {
-            adapter = feedAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            adapter = postsAdapter
+            layoutManager = LinearLayoutManager(this@PostsActivity)
             setHasFixedSize(true)
             addItemDecoration(
                 DividerItemDecoration(
@@ -55,22 +52,20 @@ class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
             )
         }
 
-        binding.addFab.setOnClickListener {
-            val intent = Intent(requireContext(), AddEditPostActivity::class.java)
-            startActivity(intent)
+        binding.backButton.setOnClickListener {
+            finish()
         }
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.posts.collect {
-                    if (it.isNotEmpty()) {
-                        binding.noTeaMessageLayout.visibility = View.GONE
-                        binding.postsRecyclerView.visibility = View.VISIBLE
-                    } else {
-                        binding.noTeaMessageLayout.visibility = View.VISIBLE
-                        binding.postsRecyclerView.visibility = View.GONE
+                if (type == "hashtag") {
+                    viewModel.getPostsByHashtag(value ?: "").collect {
+                        postsAdapter.submitList(it[0].posts)
                     }
-                    feedAdapter.submitList(it)
+                } else if (type == "person") {
+                    viewModel.getPostsByPerson(value ?: "").collect {
+                        postsAdapter.submitList(it[0].posts)
+                    }
                 }
             }
         }
@@ -78,7 +73,7 @@ class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getName().collect {
-                    feedAdapter.setName(it ?: "")
+                    postsAdapter.setName(it ?: "")
                 }
             }
         }
@@ -86,7 +81,7 @@ class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getUsername().collect {
-                    feedAdapter.setUsername(it ?: "")
+                    postsAdapter.setUsername(it ?: "")
                 }
             }
         }
@@ -94,27 +89,27 @@ class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getProfilePhotoPath().collect {
-                    feedAdapter.setProfilePhotoPath(it)
+                    postsAdapter.setProfilePhotoPath(it)
                 }
             }
         }
     }
 
     override fun onItemClick(post: Post) {
-        val intent = Intent(requireContext(), AddEditPostActivity::class.java)
+        val intent = Intent(this, AddEditPostActivity::class.java)
         intent.putExtra("post", post as Serializable)
         startActivity(intent)
     }
 
     override fun onHashtagClick(hashtag: String, post: Post) {
-        val intent = Intent(requireContext(), PostsActivity::class.java)
+        val intent = Intent(this, PostsActivity::class.java)
         intent.putExtra("type", "hashtag")
         intent.putExtra("value", hashtag)
         startActivity(intent)
     }
 
     override fun onPersonClick(person: String, post: Post) {
-        val intent = Intent(requireContext(), PostsActivity::class.java)
+        val intent = Intent(this, PostsActivity::class.java)
         intent.putExtra("type", "person")
         intent.putExtra("value", person)
         startActivity(intent)
