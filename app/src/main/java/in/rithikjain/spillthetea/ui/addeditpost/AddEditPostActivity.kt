@@ -12,6 +12,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
+import com.hendraanggrian.appcompat.socialview.Hashtag
+import com.hendraanggrian.appcompat.widget.HashtagArrayAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -34,7 +36,7 @@ class AddEditPostActivity : AppCompatActivity() {
         if (post != null) {
             binding.spillButton.text = "Update"
             binding.deleteButton.visibility = View.VISIBLE
-            binding.contentTextField.editText!!.setText(post.content)
+            binding.contentTextField.setText(post.content)
         }
 
         binding.deleteButton.setOnClickListener {
@@ -45,7 +47,7 @@ class AddEditPostActivity : AppCompatActivity() {
         }
 
         binding.spillButton.setOnClickListener {
-            val content = binding.contentTextField.editText!!.text.toString()
+            val content = binding.contentTextField.text.toString()
             if (post != null) {
                 viewModel.updatePost(post, content)
             } else {

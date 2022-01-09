@@ -37,6 +37,20 @@ class FeedAdapter(private val listener: OnItemClickListener) :
 
         init {
             binding.apply {
+                contentTextView.setOnHashtagClickListener { _, text ->
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val post = getItem(position)
+                        listener.onHashtagClick(text.toString(), post)
+                    }
+                }
+                contentTextView.setOnMentionClickListener { _, text ->
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val post = getItem(position)
+                        listener.onPersonClick(text.toString(), post)
+                    }
+                }
                 root.setOnClickListener {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
@@ -76,6 +90,8 @@ class FeedAdapter(private val listener: OnItemClickListener) :
 
     interface OnItemClickListener {
         fun onItemClick(post: Post)
+        fun onHashtagClick(hashtag: String, post: Post)
+        fun onPersonClick(person: String, post: Post)
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Post>() {

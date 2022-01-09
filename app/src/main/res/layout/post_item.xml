@@ -43,17 +43,20 @@
             app:layout_constraintStart_toEndOf="@id/name_text_view"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.hendraanggrian.appcompat.widget.SocialTextView
             android:id="@+id/content_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled."
-            android:textSize="14sp"
+            android:textSize="16sp"
+            app:hashtagColor="@color/blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/profile_photo_image_view"
-            app:layout_constraintTop_toBottomOf="@id/name_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/name_text_view"
+            app:mentionColor="@color/blue"
+            app:socialFlags="hashtag|mention" />
 
         <TextView
             android:id="@+id/date_time_text_view"

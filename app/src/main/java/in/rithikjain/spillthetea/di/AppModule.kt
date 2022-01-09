@@ -3,8 +3,8 @@ package `in`.rithikjain.spillthetea.di
 import `in`.rithikjain.spillthetea.data.local.Database
 import `in`.rithikjain.spillthetea.data.repository.DataStoreRepository
 import `in`.rithikjain.spillthetea.data.repository.DataStoreRepositoryImpl
-import `in`.rithikjain.spillthetea.data.repository.PostRepository
-import `in`.rithikjain.spillthetea.data.repository.PostRepositoryImpl
+import `in`.rithikjain.spillthetea.data.repository.AppRepository
+import `in`.rithikjain.spillthetea.data.repository.AppRepositoryImpl
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
@@ -26,13 +26,15 @@ object AppModule {
             app,
             Database::class.java,
             "tea_db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
     @Singleton
-    fun providePostRepository(db: Database): PostRepository {
-        return PostRepositoryImpl(db.postDao)
+    fun providePostRepository(db: Database): AppRepository {
+        return AppRepositoryImpl(db.postDao, db.peopleDao, db.hashtagDao)
     }
 
     @Provides

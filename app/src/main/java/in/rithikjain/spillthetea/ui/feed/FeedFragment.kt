@@ -5,6 +5,7 @@ import `in`.rithikjain.spillthetea.databinding.FragmentFeedBinding
 import `in`.rithikjain.spillthetea.ui.addeditpost.AddEditPostActivity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -102,5 +103,13 @@ class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
         val intent = Intent(requireContext(), AddEditPostActivity::class.java)
         intent.putExtra("post", post as Serializable)
         startActivity(intent)
+    }
+
+    override fun onHashtagClick(hashtag: String, post: Post) {
+        Log.d("esh", hashtag)
+    }
+
+    override fun onPersonClick(person: String, post: Post) {
+        Log.d("esh", person)
     }
 }

@@ -1,15 +1,19 @@
 package `in`.rithikjain.spillthetea.ui.feed
 
 import `in`.rithikjain.spillthetea.data.repository.DataStoreRepository
-import `in`.rithikjain.spillthetea.data.repository.PostRepository
+import `in`.rithikjain.spillthetea.data.repository.AppRepository
 import `in`.rithikjain.spillthetea.utils.Constants
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FeedViewModel @Inject constructor(
-    private val repository: PostRepository,
+    private val repository: AppRepository,
     private val dataStoreRepository: DataStoreRepository
 ) : ViewModel() {
 

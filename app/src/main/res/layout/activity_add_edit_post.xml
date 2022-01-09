@@ -111,37 +111,37 @@
                 android:id="@+id/profile_photo_image_view"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="@string/profile_image"
                 android:src="@color/blue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView
                 android:id="@+id/content_text_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="@string/whats_up"
+                android:inputType="text|textMultiLine"
+                android:lines="2"
+                android:maxLines="10"
+                android:scrollbars="vertical"
+                android:textCursorDrawable="@null"
+                android:textSize="16sp"
                 app:boxBackgroundMode="none"
+                app:hashtagColor="@color/blue"
                 app:hintEnabled="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/profile_photo_image_view"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:hint="@string/whats_up"
-                    android:inputType="text|textMultiLine"
-                    android:lines="8"
-                    android:maxLines="10"
-                    android:minLines="6"
-                    android:scrollbars="vertical" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                app:mentionColor="@color/blue"
+                app:socialFlags="hashtag|mention" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
