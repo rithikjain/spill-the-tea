@@ -17,6 +17,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -43,6 +44,7 @@ class ProfileFragment : Fragment() {
         binding.saveButton.setOnClickListener {
             viewModel.setName(binding.nameTextInput.editText!!.text.toString())
             viewModel.setUsername(binding.usernameTextInput.editText!!.text.toString())
+            Snackbar.make(view,"Saved",Snackbar.LENGTH_SHORT).show()
         }
 
         val startForProfileImageResult =
