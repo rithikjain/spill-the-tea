@@ -60,20 +60,18 @@ class FeedFragment : Fragment(), FeedAdapter.OnItemClickListener {
             startActivity(intent)
         }
 
-        lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.posts.collect {
-                    if (it.isNotEmpty()) {
-                        binding.noTeaMessageLayout.visibility = View.GONE
-                        binding.postsRecyclerView.visibility = View.VISIBLE
-                    } else {
-                        binding.noTeaMessageLayout.visibility = View.VISIBLE
-                        binding.postsRecyclerView.visibility = View.GONE
-                    }
-                    feedAdapter.submitList(it)
-                }
+        viewModel.posts.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                binding.noTeaMessageLayout.visibility = View.GONE
+                binding.postsRecyclerView.visibility = View.VISIBLE
+            } else {
+                binding.noTeaMessageLayout.visibility = View.VISIBLE
+                binding.postsRecyclerView.visibility = View.GONE
             }
+            feedAdapter.submitList(it)
         }
+
+
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {

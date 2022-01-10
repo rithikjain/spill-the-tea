@@ -86,4 +86,7 @@ dependencies {
     // SocialView
     implementation "com.hendraanggrian.appcompat:socialview:0.2"
     implementation "com.hendraanggrian.appcompat:socialview-commons:0.2"
+
+    //LiveData
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
 }
