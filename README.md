@@ -9,7 +9,8 @@ height="200"/>
 
 We all need some place to write down our thoughts, events or ideas that come to your mind daily.
 We write a lot of thoughts that come to our mind daily, but we don't have a nice way to classify them and look back later.
-<br>
+
+
 <b> Proposed Solution : </b>
 
 There are a lot of digital solutions for taking notes, but Spill The Tea proposes a solution in which your data stays within your device and can be organised effectively using hashtags and people.
