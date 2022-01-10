@@ -136,6 +136,7 @@
                 app:boxBackgroundMode="none"
                 app:hashtagColor="@color/blue"
                 app:hintEnabled="false"
+                android:textColorHint="@color/light_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/profile_photo_image_view"
