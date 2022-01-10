@@ -15,4 +15,6 @@
     <string name="name">Name</string>
     <string name="username">Username</string>
     <string name="save">Save</string>
+    <string name="hashtags">Hashtags</string>
+    <string name="people">People</string>
 </resources>
