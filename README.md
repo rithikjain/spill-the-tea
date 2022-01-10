@@ -1,7 +1,10 @@
 # Android-Study-Jams
 
-Spill The Tea
-
+<img
+src="https://svgshare.com/i/dCB.svg"
+height="200"/>
+<h1>Spill the Tea</h1>
+<br>
 <b> Problem Statement: </b>
 
 We all need some place to write down our thoughts, events or ideas that come to your mind daily.
