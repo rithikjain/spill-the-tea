@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/first_time_nav"
+    app:startDestination="@id/introFragment">
+
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="in.rithikjain.spillthetea.ui.splash.IntroFragment"
+        android:label="fragment_intro"
+        tools:layout="@layout/fragment_intro" >
+        <action
+            android:id="@+id/action_introFragment_to_introProfileFragment"
+            app:destination="@id/introProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/introProfileFragment"
+        android:name="in.rithikjain.spillthetea.ui.splash.IntroProfileFragment"
+        android:label="fragment_intro_profile"
+        tools:layout="@layout/fragment_intro_profile" />
+</navigation>

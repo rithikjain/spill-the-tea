@@ -17,4 +17,11 @@
     <string name="save">Save</string>
     <string name="hashtags">Hashtags</string>
     <string name="people">People</string>
+    <string name="app_logo">App Logo</string>
+    <string name="intro_text_1">A place to save your personal posts which stays on your device. Use</string>
+    <string name="intro_hashtags">#hashtags</string>
+    <string name="intro_people">\@people</string>
+    <string name="intro_text_2">to organize your posts and explore later</string>
+    <string name="get_started">Get Started</string>
+    <string name="setup_profile">Setup Profile</string>
 </resources>

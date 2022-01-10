@@ -18,10 +18,14 @@
         <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/drawable/item_bg_rounded.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/drawable/selector.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/activity_add_edit_post.xml" value="0.21979166666666666" />
+        <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/activity_first_time_intro.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/activity_main.xml" value="0.21979166666666666" />
         <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/activity_posts.xml" value="0.21979166666666666" />
+        <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/activity_splash.xml" value="0.21979166666666666" />
         <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/fragment_explore.xml" value="0.21979166666666666" />
         <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/fragment_feed.xml" value="0.21979166666666666" />
+        <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/fragment_intro.xml" value="0.21979166666666666" />
+        <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/fragment_intro_profile.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/fragment_profile.xml" value="0.21979166666666666" />
         <entry key="..\:/Users/jeeva/Documents/SpillTheTea/spill-the-tea/app/src/main/res/layout/hashtag_item.xml" value="0.21979166666666666" />
       </map>
