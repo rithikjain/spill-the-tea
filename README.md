@@ -4,7 +4,7 @@
 src="https://svgshare.com/i/dCB.svg"
 height="200"/>
 <h1>Spill the Tea</h1>
-
+<h3>GDSC VIT Vellore</h3>
 <b> Problem Statement: </b>
 
 We all need some place to write down our thoughts, events or ideas that come to your mind daily.
@@ -36,6 +36,7 @@ The core functionality of the app is to be able to look back at the people/thing
 <b> Application Link & Future Scope : </b>
 
 Emotion analysis date wise so that you can see how you were feeling on a particular day (which can be done in future).
-The app is currently in the Alpha testing phase You can access the app : 
+You can access the app here: <a href="https://drive.google.com/file/d/1SaYjS4ghwYtIJcXwzwhlTmxG4Q9P0Oak/view?usp=sharing">https://drive.google.com/file/d/1SaYjS4ghwYtIJcXwzwhlTmxG4Q9P0Oak/view?usp=sharing</a>
 
 Illustration credits: https://undraw.co
+
